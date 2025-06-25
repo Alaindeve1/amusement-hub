@@ -1,0 +1,61 @@
+{
+  "locations": [
+    {
+      "id": 1,
+      "name": "Magic Kingdom",
+      "slug": "magic-kingdom",
+      "description": "The most magical place on Earth, featuring Cinderella's Castle and classic Disney attractions.",
+      "category": "Theme Park",
+      "address": "1180 Seven Seas Dr, Lake Buena Vista, FL 32830",
+      "rating": 4.8,
+      "images": [
+        "/images/locations/magic-kingdom-1.jpg",
+        "/images/locations/magic-kingdom-2.jpg"
+      ],
+      "features": ["Roller Coasters", "Character Meet & Greets", "Parades", "Fireworks"],
+      "openingHours": "9:00 AM - 10:00 PM",
+      "ticketPrice": {
+        "adult": 109,
+        "child": 104
+      }
+    },
+    {
+      "id": 2,
+      "name": "Universal Studios Hollywood",
+      "slug": "universal-studios-hollywood",
+      "description": "Experience the world of movies with thrilling rides and attractions based on popular films.",
+      "category": "Theme Park",
+      "address": "100 Universal City Plaza, Universal City, CA 91608",
+      "rating": 4.6,
+      "images": [
+        "/images/locations/universal-studios-1.jpg",
+        "/images/locations/universal-studios-2.jpg"
+      ],
+      "features": ["Studio Tour", "Harry Potter World", "WaterWorld Show", "Simpsons Ride"],
+      "openingHours": "9:00 AM - 9:00 PM",
+      "ticketPrice": {
+        "adult": 129,
+        "child": 123
+      }
+    },
+    {
+      "id": 3,
+      "name": "Disney's Typhoon Lagoon",
+      "slug": "typhoon-lagoon",
+      "description": "A tropical paradise with thrilling water slides and a massive wave pool.",
+      "category": "Water Park",
+      "address": "1145 East Buena Vista Boulevard, Lake Buena Vista, FL 32830",
+      "rating": 4.5,
+      "images": [
+        "/images/locations/typhoon-lagoon-1.jpg",
+        "/images/locations/typhoon-lagoon-2.jpg"
+      ],
+      "features": ["Wave Pool", "Water Slides", "Lazy River", "Kids Area"],
+      "openingHours": "10:00 AM - 6:00 PM",
+      "ticketPrice": {
+        "adult": 69,
+        "child": 63
+      }
+    }
+  ]
+}
