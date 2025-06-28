@@ -92,27 +92,29 @@ export default function LocationDetails() {
               <div className="relative h-96 w-full rounded-lg overflow-hidden mb-4">
                 <img
                   className="w-full h-full object-cover"
-                  src={location.galleryImages[selectedImage]}
-                  alt={`${location.name} - ${selectedImage + 1}`}
+                  src={location.images?.[0] || '/images/placeholder.jpg'}
+                  alt={location.name}
                 />
               </div>
-              <div className="grid grid-cols-4 gap-2">
-                {location.galleryImages.map((image, index) => (
-                  <button
-                    key={index}
-                    className={`relative h-20 rounded-md overflow-hidden ${
-                      selectedImage === index ? 'ring-2 ring-blue-500' : ''
-                    }`}
-                    onClick={() => setSelectedImage(index)}
-                  >
-                    <img
-                      className="w-full h-full object-cover"
-                      src={image}
-                      alt={`${location.name} - ${index + 1}`}
-                    />
-                  </button>
-                ))}
-              </div>
+              {location.images?.length > 1 && (
+                <div className="grid grid-cols-4 gap-2">
+                  {location.images.slice(1).map((image, index) => (
+                    <button
+                      key={index}
+                      className={`relative h-20 rounded-md overflow-hidden ${
+                        selectedImage === index + 1 ? 'ring-2 ring-blue-500' : ''
+                      }`}
+                      onClick={() => setSelectedImage(index + 1)}
+                    >
+                      <img
+                        className="w-full h-full object-cover"
+                        src={image}
+                        alt={`${location.name} - ${index + 1}`}
+                      />
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* Tabs */}
@@ -141,33 +143,42 @@ export default function LocationDetails() {
                   <h2 className="text-2xl font-bold text-gray-900 mb-4">About {location.name}</h2>
                   <div className="prose max-w-none">
                     <p className="text-gray-600">{location.description}</p>
-                    <div className="mt-6 grid grid-cols-2 gap-4">
+                    <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
                         <h3 className="font-medium text-gray-900">Location</h3>
-                        <p className="mt-1 text-gray-600">{location.address}</p>
+                        <p className="mt-1 text-gray-600">{location.address || 'Not specified'}</p>
                       </div>
-                      <div>
-                        <h3 className="font-medium text-gray-900">Hours</h3>
-                        <p className="mt-1 text-gray-600">
-                          {location.hours.weekday} (Weekdays)<br />
-                          {location.hours.weekend} (Weekends)
-                        </p>
-                      </div>
-                      <div>
-                        <h3 className="font-medium text-gray-900">Phone</h3>
-                        <p className="mt-1 text-gray-600">{location.phone}</p>
-                      </div>
-                      <div>
-                        <h3 className="font-medium text-gray-900">Website</h3>
-                        <a
-                          href={location.website}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-blue-600 hover:underline"
-                        >
-                          Visit Website
-                        </a>
-                      </div>
+                      {location.openingHours && (
+                        <div>
+                          <h3 className="font-medium text-gray-900">Hours</h3>
+                          <p className="mt-1 text-gray-600">
+                            {location.openingHours}
+                          </p>
+                        </div>
+                      )}
+                      {location.phone && (
+                        <div>
+                          <h3 className="font-medium text-gray-900">Phone</h3>
+                          <p className="mt-1 text-gray-600">
+                            <a href={`tel:${location.phone}`} className="hover:text-blue-600">
+                              {location.phone}
+                            </a>
+                          </p>
+                        </div>
+                      )}
+                      {location.website && (
+                        <div>
+                          <h3 className="font-medium text-gray-900">Website</h3>
+                          <a
+                            href={location.website.startsWith('http') ? location.website : `https://${location.website}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-blue-600 hover:underline block mt-1"
+                          >
+                            {location.website.replace(/^https?:\/\//, '')}
+                          </a>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -181,20 +192,31 @@ export default function LocationDetails() {
             <div className="bg-gray-50 p-6 rounded-lg shadow-sm">
               <h3 className="text-lg font-medium text-gray-900 mb-4">Ticket Information</h3>
               <div className="space-y-4">
-                {location.ticketTypes.map((ticket, index) => (
-                  <div key={index} className="border-b border-gray-200 pb-4">
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <h4 className="font-medium text-gray-900">{ticket.name}</h4>
-                        <p className="text-sm text-gray-500">{ticket.description}</p>
-                      </div>
-                      <span className="font-medium text-gray-900">${ticket.price}</span>
+                {location.ticketPrice && (
+                  <div key="ticket" className="flex justify-between items-center py-2 border-b border-gray-200">
+                    <div>
+                      <h4 className="text-sm font-medium text-gray-900">Standard Admission</h4>
+                      <p className="text-sm text-gray-500">Ages 10+</p>
                     </div>
-                    <button className="mt-2 w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 text-sm font-medium">
-                      Add to Cart
-                    </button>
+                    <span className="text-lg font-bold text-gray-900">
+                      ${location.ticketPrice.adult}
+                    </span>
                   </div>
-                ))}
+                )}
+                {location.ticketPrice?.child && (
+                  <div key="child-ticket" className="flex justify-between items-center py-2 border-b border-gray-200">
+                    <div>
+                      <h4 className="text-sm font-medium text-gray-900">Child Admission</h4>
+                      <p className="text-sm text-gray-500">Ages 3-9</p>
+                    </div>
+                    <span className="text-lg font-bold text-gray-900">
+                      ${location.ticketPrice.child}
+                    </span>
+                  </div>
+                )}
+                <button className="mt-4 w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 text-sm font-medium">
+                  Add to Cart
+                </button>
               </div>
 
               <div className="mt-6">

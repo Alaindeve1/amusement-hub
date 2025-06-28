@@ -149,7 +149,7 @@ export default function LocationsPage() {
                   </p>
                   <div className="flex justify-between items-center">
                     <span className="text-lg font-bold text-gray-900">
-                      ${location.priceRange.min} - ${location.priceRange.max}
+                      ${location.ticketPrice?.adult || 'N/A'} {location.ticketPrice?.child ? `- $${location.ticketPrice.child}` : ''}
                     </span>
                     <Link 
                       href={`/locations/${location.slug}`}
