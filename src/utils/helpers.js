@@ -39,12 +39,19 @@ export function filterLocations(locations, filters = {}) {
       if (!matchesSearch) return false;
     }
 
-    // Filter by category
-    if (filters.category && location.category !== filters.category) {
+    // Filter by category slug
+    if (filters.category) {
+      // First check if the location has a category slug that matches
+      if (location.categorySlug === filters.category) {
+        return true;
+      }
+      // Then check if the category name matches (case-insensitive)
+      if (location.category.toLowerCase() === filters.category.toLowerCase()) {
+        return true;
+      }
+      // If we have a category filter but no match, exclude this location
       return false;
     }
-
-    // Add more filters as needed
 
     return true;
   });

@@ -6,6 +6,7 @@
       "slug": "magic-kingdom",
       "description": "The most magical place on Earth, featuring Cinderella's Castle and classic Disney attractions.",
       "category": "Theme Park",
+      "categorySlug": "theme-parks",
       "address": "1180 Seven Seas Dr, Lake Buena Vista, FL 32830",
       "rating": 4.8,
       "images": [
@@ -25,6 +26,7 @@
       "slug": "universal-studios-hollywood",
       "description": "Experience the world of movies with thrilling rides and attractions based on popular films.",
       "category": "Theme Park",
+      "categorySlug": "theme-parks",
       "address": "100 Universal City Plaza, Universal City, CA 91608",
       "rating": 4.6,
       "images": [
@@ -44,6 +46,7 @@
       "slug": "typhoon-lagoon",
       "description": "A tropical paradise with thrilling water slides and a massive wave pool.",
       "category": "Water Park",
+      "categorySlug": "water-parks",
       "address": "1145 East Buena Vista Boulevard, Lake Buena Vista, FL 32830",
       "rating": 4.5,
       "images": [
@@ -55,6 +58,46 @@
       "ticketPrice": {
         "adult": 69,
         "child": 63
+      }
+    },
+    {
+      "id": 4,
+      "name": "Disney's Blizzard Beach",
+      "slug": "blizzard-beach",
+      "description": "A ski-resort themed water park with thrilling slides and a relaxing beach area.",
+      "category": "Water Park",
+      "categorySlug": "water-parks",
+      "address": "1534 Blizzard Beach Dr, Lake Buena Vista, FL 32830",
+      "rating": 4.4,
+      "images": [
+        "/images/locations/blizzard-beach-1.jpg",
+        "/images/locations/blizzard-beach-2.jpg"
+      ],
+      "features": ["Wave Pool", "Water Coasters", "Lazy River", "Kids Area"],
+      "openingHours": "10:00 AM - 6:00 PM",
+      "ticketPrice": {
+        "adult": 69,
+        "child": 63
+      }
+    },
+    {
+      "id": 5,
+      "name": "Disney's Hollywood Studios",
+      "slug": "hollywood-studios",
+      "description": "Live your own Hollywood adventure with thrilling attractions and entertainment.",
+      "category": "Theme Park",
+      "categorySlug": "theme-parks",
+      "address": "351 S Studio Dr, Lake Buena Vista, FL 32830",
+      "rating": 4.7,
+      "images": [
+        "/images/locations/hollywood-studios-1.jpg",
+        "/images/locations/hollywood-studios-2.jpg"
+      ],
+      "features": ["Star Wars: Galaxy's Edge", "Toy Story Land", "Tower of Terror", "Rock 'n' Roller Coaster"],
+      "openingHours": "9:00 AM - 9:00 PM",
+      "ticketPrice": {
+        "adult": 119,
+        "child": 114
       }
     }
   ]

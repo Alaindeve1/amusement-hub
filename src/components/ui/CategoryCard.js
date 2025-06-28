@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export default function CategoryCard({ category }) {
   return (
-    <Link href={`/locations/${category.slug}`}>
+    <Link href={`/locations?category=${category.slug}`}>
       <div className="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
         <div className="relative h-48">
           <Image
