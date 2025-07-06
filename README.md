@@ -1,103 +1,125 @@
-# Amusement Hub 🎢
+# Amusement Hub 🎢 - Full Stack Application
 
-Amusement Hub is a modern web application built with Next.js that helps users discover and explore various amusement locations, including theme parks, water parks, and family entertainment centers. The application features a responsive design, search functionality, and detailed location pages.
+A modern full-stack web application for discovering and exploring amusement parks, water parks, and entertainment centers. Built with Next.js frontend and Node.js/Express backend.
 
-## Features ✨
+## 🏗️ Project Structure
 
-- 🏰 Browse amusement locations by category
-- 🔍 Search functionality to find specific locations
-- 📱 Responsive design that works on all devices
-- 🎨 Modern UI with smooth animations
-- ⚡ Fast page loads with Next.js optimizations
-- 📱 Mobile-first approach
-- 🌓 Dark mode support
+```
+amusement-hub/
+├── frontend/          # Next.js React Application
+├── backend/           # Node.js Express API
+├── ERD_Amusement_Hub.md  # Database Schema Documentation
+└── package.json       # Root package.json for monorepo
+```
 
-## Tech Stack 🛠️
-
-- **Framework**: [Next.js](https://nextjs.org/) (React)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **Icons**: [Heroicons](https://heroicons.com/)
-- **Deployment**: [Vercel](https://vercel.com/)
-- **Linting**: ESLint
-- **Code Formatting**: Prettier
-
-## Getting Started 🚀
+## 🚀 Quick Start
 
 ### Prerequisites
-
-- Node.js 14.6.0 or later
-- npm or yarn package manager
+- Node.js 18+ 
+- PostgreSQL (for backend database)
+- npm or yarn
 
 ### Installation
 
-1. Clone the repository:
+1. **Clone and install dependencies:**
    ```bash
-   git clone https://github.com/your-username/amusement-hub.git
+   git clone <your-repo-url>
    cd amusement-hub
+   npm run install:all
    ```
 
-2. Install dependencies:
+2. **Set up environment variables:**
    ```bash
-   npm install
-   # or
-   yarn install
+   # Copy environment files
+   cp frontend/.env.example frontend/.env.local
+   cp backend/.env.example backend/.env
    ```
 
-3. Run the development server:
+3. **Start development servers:**
    ```bash
+   # Start both frontend and backend
    npm run dev
-   # or
-   yarn dev
+   
+   # Or start individually
+   npm run dev:frontend  # Frontend on http://localhost:3000
+   npm run dev:backend   # Backend on http://localhost:5000
    ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
+## 📁 Frontend (Next.js)
 
-## Project Structure 📁
+- **Framework**: Next.js 14 with React 18
+- **Styling**: Tailwind CSS
+- **Features**: SSR, responsive design, modern UI
 
-```
-├── public/                 # Static files
-│   └── images/             # Image assets
-├── src/
-│   ├── components/        # Reusable UI components
-│   │   ├── common/         # Common layout components
-│   │   ├── sections/       # Page sections
-│   │   └── ui/             # UI components
-│   ├── data/               # Static data
-│   ├── pages/              # Application routes
-│   ├── styles/             # Global styles
-│   └── utils/              # Utility functions
-├── next.config.js          # Next.js configuration
-└── tailwind.config.js      # Tailwind CSS configuration
+### Frontend Commands
+```bash
+cd frontend
+npm run dev      # Development server
+npm run build    # Production build
+npm run start    # Production server
 ```
 
-## Available Scripts 📜
+## 🔧 Backend (Node.js/Express)
 
-- `npm run dev` - Start the development server
-- `npm run build` - Build the application for production
-- `npm start` - Start the production server
-- `npm run lint` - Run ESLint
-- `npm run format` - Format code with Prettier
+- **Framework**: Express.js
+- **Database**: PostgreSQL with Sequelize ORM
+- **Authentication**: JWT
+- **File Upload**: Multer + Cloudinary
 
-## Deployment 🚀
+### Backend Commands
+```bash
+cd backend
+npm run dev      # Development server with nodemon
+npm run start    # Production server
+npm test         # Run tests
+```
 
-### Vercel
+## 🗄️ Database
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_campaign=create-next-app-readme) from the creators of Next.js.
+See `ERD_Amusement_Hub.md` for complete database schema documentation.
 
-### Other Platforms
+## 🛠️ Development
 
-You can also deploy to other platforms like Netlify, AWS, or any static hosting service that supports Next.js.
+### Monorepo Scripts
+- `npm run dev` - Start both frontend and backend
+- `npm run build` - Build both applications
+- `npm run install:all` - Install dependencies for all workspaces
 
-## Contributing 🤝
+### Git Workflow
+1. Create feature branch: `git checkout -b feature/your-feature`
+2. Make changes in frontend/ or backend/
+3. Test your changes
+4. Commit: `git commit -m "feat: your feature description"`
+5. Push: `git push origin feature/your-feature`
+6. Create Pull Request
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+## 📦 Deployment
 
-## License 📄
+### Frontend (Vercel)
+- Connected to `frontend/` directory
+- Automatic deployments on push to main
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+### Backend (Railway/Render)
+- Connected to `backend/` directory
+- Environment variables configured
+- Database migrations run automatically
 
-## Acknowledgements 🙏
+## 🤝 Contributing
 
-- [Next.js Documentation](https://nextjs.org/docs)
-- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-- [Heroicons](https://heroicons.com/)
+1. Fork the repository
+2. Create your feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Commit your changes
+6. Push to the branch
+7. Create a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+## 🙏 Acknowledgements
+
+- Next.js team for the amazing framework
+- Tailwind CSS for the utility-first styling
+- Express.js community for the robust backend framework
