@@ -21,6 +21,16 @@ sequelize.authenticate()
   .then(() => console.log('Database connected!'))
   .catch(err => console.error('Database connection error:', err));
 
+require('./models'); // This will import and register all models
+
+sequelize.sync({ alter: true }) // Use { force: true } to drop and recreate tables (dangerous!)
+  .then(() => {
+    console.log('All models were synchronized successfully.');
+  })
+  .catch(err => {
+    console.error('Error syncing models:', err);
+  });
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
