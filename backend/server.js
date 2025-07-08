@@ -31,6 +31,9 @@ sequelize.sync({ alter: true }) // Use { force: true } to drop and recreate tabl
     console.error('Error syncing models:', err);
   });
 
+const categoryRoutes = require('./routes/category');
+app.use('/api/categories', categoryRoutes);
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
