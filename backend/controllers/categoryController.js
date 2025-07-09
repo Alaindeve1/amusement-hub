@@ -1,4 +1,5 @@
 const { Category } = require('../models');
+const { validationResult } = require('express-validator'); // Import validationResult
 
 // Controller function to get all categories
 exports.getAllCategories = async (req, res) => {
@@ -12,6 +13,13 @@ exports.getAllCategories = async (req, res) => {
 
 // Controller function to create a new category
 exports.createCategory = async (req, res) => {
+  // Check for validation errors from express-validator
+  const errors = validationResult(req); // Collects errors from validation middleware
+  if (!errors.isEmpty()) {
+    // If there are errors, return 400 with error details
+    return res.status(400).json({ errors: errors.array() });
+  }
+
   try {
     const { name, slug, description, image_url } = req.body; // Get data from request body
 
