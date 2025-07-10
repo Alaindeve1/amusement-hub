@@ -18,5 +18,10 @@
   "devDependencies": {
     "concurrently": "^8.2.2"
   },
-  "description": "Amusement Hub - Full Stack Application with Frontend and Backend"
-} 
+  "description": "Amusement Hub - Full Stack Application with Frontend and Backend",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "dotenv": "^17.2.0",
+    "jsonwebtoken": "^9.0.2"
+  }
+}
