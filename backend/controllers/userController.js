@@ -54,6 +54,10 @@ exports.updateUser = async (req, res) => {
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
+    // Ownership check: only the user or admin can update
+    if (user.id !== req.user.userId && req.user.role !== 'admin') {
+      return res.status(403).json({ message: 'You can only update your own profile' });
+    }
     Object.keys(req.body).forEach(key => {
       user[key] = req.body[key] ?? user[key];
     });
@@ -71,6 +75,10 @@ exports.deleteUser = async (req, res) => {
     const user = await User.findByPk(id);
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
+    }
+    // Ownership check: only the user or admin can delete
+    if (user.id !== req.user.userId && req.user.role !== 'admin') {
+      return res.status(403).json({ message: 'You can only delete your own profile' });
     }
     await user.destroy();
     res.json({ message: 'User deleted successfully' });

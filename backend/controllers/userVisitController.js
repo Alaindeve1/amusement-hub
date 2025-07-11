@@ -40,6 +40,10 @@ exports.updateUserVisit = async (req, res) => {
     const { id } = req.params;
     const visit = await UserVisit.findByPk(id);
     if (!visit) return res.status(404).json({ error: 'User visit not found' });
+    // Ownership check: only owner or admin can update
+    if (visit.user_id !== req.user.userId && req.user.role !== 'admin') {
+      return res.status(403).json({ message: 'You can only update your own visit' });
+    }
     Object.keys(req.body).forEach(key => {
       visit[key] = req.body[key] ?? visit[key];
     });
@@ -55,6 +59,10 @@ exports.deleteUserVisit = async (req, res) => {
     const { id } = req.params;
     const visit = await UserVisit.findByPk(id);
     if (!visit) return res.status(404).json({ error: 'User visit not found' });
+    // Ownership check: only owner or admin can delete
+    if (visit.user_id !== req.user.userId && req.user.role !== 'admin') {
+      return res.status(403).json({ message: 'You can only delete your own visit' });
+    }
     await visit.destroy();
     res.json({ message: 'User visit deleted successfully' });
   } catch (error) {

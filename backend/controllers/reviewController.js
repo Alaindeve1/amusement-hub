@@ -54,6 +54,10 @@ exports.updateReview = async (req, res) => {
     if (!review) {
       return res.status(404).json({ error: 'Review not found' });
     }
+    // Ownership check: only owner or admin can update
+    if (review.user_id !== req.user.userId && req.user.role !== 'admin') {
+      return res.status(403).json({ message: 'You can only update your own review' });
+    }
     Object.keys(req.body).forEach(key => {
       review[key] = req.body[key] ?? review[key];
     });
@@ -71,6 +75,10 @@ exports.deleteReview = async (req, res) => {
     const review = await Review.findByPk(id);
     if (!review) {
       return res.status(404).json({ error: 'Review not found' });
+    }
+    // Ownership check: only owner or admin can delete
+    if (review.user_id !== req.user.userId && req.user.role !== 'admin') {
+      return res.status(403).json({ message: 'You can only delete your own review' });
     }
     await review.destroy();
     res.json({ message: 'Review deleted successfully' });

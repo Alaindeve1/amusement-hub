@@ -40,6 +40,10 @@ exports.updateBooking = async (req, res) => {
     const { id } = req.params;
     const booking = await Booking.findByPk(id);
     if (!booking) return res.status(404).json({ error: 'Booking not found' });
+    // Ownership check: only owner or admin can update
+    if (booking.user_id !== req.user.userId && req.user.role !== 'admin') {
+      return res.status(403).json({ message: 'You can only update your own booking' });
+    }
     Object.keys(req.body).forEach(key => {
       booking[key] = req.body[key] ?? booking[key];
     });
@@ -55,6 +59,10 @@ exports.deleteBooking = async (req, res) => {
     const { id } = req.params;
     const booking = await Booking.findByPk(id);
     if (!booking) return res.status(404).json({ error: 'Booking not found' });
+    // Ownership check: only owner or admin can delete
+    if (booking.user_id !== req.user.userId && req.user.role !== 'admin') {
+      return res.status(403).json({ message: 'You can only delete your own booking' });
+    }
     await booking.destroy();
     res.json({ message: 'Booking deleted successfully' });
   } catch (error) {
