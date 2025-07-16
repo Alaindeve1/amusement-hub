@@ -1,0 +1,27 @@
+[
+    {
+      "id": 1,
+      "name": "Theme Parks",
+      "icon": "🎢"
+    },
+    {
+      "id": 2,
+      "name": "Water Parks",
+      "icon": "💦"
+    },
+    {
+      "id": 3,
+      "name": "Zoos",
+      "icon": "🦁"
+    },
+    {
+      "id": 4,
+      "name": "Aquariums",
+      "icon": "🐠"
+    },
+    {
+      "id": 5,
+      "name": "Adventure Parks",
+      "icon": "🧗"
+    }
+  ]
