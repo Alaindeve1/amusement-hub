@@ -10,7 +10,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Amusement Hub - Your Ultimate Entertainment Guide",
-  description: "Discover the best amusement parks, attractions, and entertainment venues near you.",
+  description: "Discover the best    amusement parks, attractions, and entertainment venues near you.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
