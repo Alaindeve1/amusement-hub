@@ -123,3 +123,5 @@ This project is licensed under the MIT License.
 - Next.js team for the amazing framework
 - Tailwind CSS for the utility-first styling
 - Express.js community for the robust backend framework
+
+## BUILD BY NDIZEYE ALAIN
