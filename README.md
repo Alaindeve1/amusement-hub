@@ -95,7 +95,7 @@ See `ERD_Amusement_Hub.md` for complete database schema documentation.
 
 ## 📦 Deployment
 
-### Frontend (Vercel)
+### Frontend (netlify)
 - Connected to `frontend/` directory
 - Automatic deployments on push to main
 
