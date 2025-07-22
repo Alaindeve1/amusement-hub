@@ -1,15 +1,28 @@
-// src/components/ui/CategoryCard.tsx
+import Link from 'next/link';
 
-type CategoryCardProps = {
+interface Category {
+  id: number;
   name: string;
-  icon: string;
-};
+  description: string;
+  image: string;
+}
 
-export default function CategoryCard({ name, icon }: CategoryCardProps) {
+interface CategoryCardProps {
+  category: Category;
+}
+
+export default function CategoryCard({ category }: CategoryCardProps) {
   return (
-    <div className="flex flex-col items-center justify-center bg-white rounded-xl shadow-md p-6 hover:shadow-xl transition group cursor-pointer border border-gray-100">
-      <span className="text-4xl mb-3 group-hover:scale-110 transition">{icon}</span>
-      <span className="text-lg font-semibold text-gray-800">{name}</span>
-    </div>
+    <Link href={`/categories/${category.id}`}>
+      <div className="border rounded-lg shadow hover:shadow-lg transition p-4 cursor-pointer bg-white">
+        <img
+          src={category.image}
+          alt={category.name}
+          className="w-full h-40 object-cover rounded mb-4"
+        />
+        <h2 className="text-xl font-semibold mb-2">{category.name}</h2>
+        <p className="text-gray-600">{category.description}</p>
+      </div>
+    </Link>
   );
 }
