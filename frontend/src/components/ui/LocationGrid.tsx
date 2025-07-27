@@ -1,5 +1,5 @@
 // 1. Import the LocationCard component we'll create next
-import LocationCard from './LocationCard.jsx';
+import LocationCard from './LocationCard';
 
 // 2. Define the structure of a location object
 interface Location {
