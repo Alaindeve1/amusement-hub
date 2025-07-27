@@ -1,14 +1,16 @@
-// 1. Import Next.js params for getting the category ID from the URL
-import { Params } from 'next/navigation';
-
-// 2. Import categories data (we'll use this to find the specific category)
+// 1. Import categories data (we'll use this to find the specific category)
 import categories from '@/data/categories.json';
 
-// 3. Import a component we'll create to display locations in this category
+// 2. Import a component we'll create to display locations in this category
 import LocationsGrid from '@/components/ui/LocationGrid';
 
+// 3. Define the props interface
+interface PageProps {
+  params: { id: string };
+}
+
 // 4. Create the page component that Next.js will automatically call
-export default function CategoryDetailsPage({ params }: { params: Params }) {
+export default function CategoryDetailsPage({ params }: PageProps) {
   // 5. Extract the category ID from the URL parameters
   const categoryId = parseInt(params.id);
 
