@@ -3,18 +3,18 @@
     "id": 1,
     "name": "Rides",
     "description": "Exciting rides for all ages.",
-    "image": "/public/globe.svg"
+    "image": "/globe.svg"
   },
   {
     "id": 2,
     "name": "Food",
     "description": "Delicious food and snacks.",
-    "image": "/public/window.svg"
+    "image": "/window.svg"
   },
   {
     "id": 3,
     "name": "Shops",
     "description": "Souvenirs and gifts.",
-    "image": "/public/vercel.svg"
+    "image": "/vercel.svg"
   }
 ]
