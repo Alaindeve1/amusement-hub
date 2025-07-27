@@ -5,7 +5,7 @@ import { Params } from 'next/navigation';
 import categories from '@/data/categories.json';
 
 // 3. Import a component we'll create to display locations in this category
-import LocationsGrid from '@/components/ui/LocationsGrid';
+import LocationsGrid from '@/components/ui/LocationGrid.tsx';
 
 // 4. Create the page component that Next.js will automatically call
 export default function CategoryDetailsPage({ params }: { params: Params }) {
