@@ -1,5 +1,5 @@
 // 1. Import categories data (we'll use this to find the specific category)
-import categories from '@/data/categories.json';
+import { api } from '@/lib/api';
 
 // 2. Import a component we'll create to display locations in this category
 import LocationsGrid from '@/components/ui/LocationGrid';
@@ -10,12 +10,18 @@ interface PageProps {
 }
 
 // 4. Create the page component that Next.js will automatically call
-export default function CategoryDetailsPage({ params }: PageProps) {
+export default async function CategoryDetailsPage({ params }: PageProps) {
+
   // 5. Extract the category ID from the URL parameters
   const categoryId = parseInt(params.id);
 
-  // 6. Find the specific category from our data
-  const category = categories.find(cat => cat.id === categoryId);
+  // 6. Fetch the specific category from backend
+  let category: any = null;
+  try {
+    category = await api.getCategory(categoryId);
+  } catch (e) {
+    category = null;
+  }
 
   // 7. If category doesn't exist, show error message
   if (!category) {
@@ -27,23 +33,16 @@ export default function CategoryDetailsPage({ params }: PageProps) {
     );
   }
 
-  // 8. For now, we'll use dummy data for locations (later we'll fetch from backend)
-  const locationsInCategory = [
-    {
-      id: 1,
-      name: "Roller Coaster Adventure",
-      description: "Thrilling roller coaster experience",
-      image: "/globe.svg",
-      rating: 4.5
-    },
-    {
-      id: 2,
-      name: "Ferris Wheel Delight",
-      description: "Scenic views from above",
-      image: "/window.svg",
-      rating: 4.2
-    }
-  ];
+  // 8. Fetch locations from backend and filter by category
+  const allLocations = await api.listLocations();
+  const filtered = allLocations.filter(l => Number(l.category_id) === categoryId);
+  const locationsInCategory = filtered.map(l => ({
+    id: l.id,
+    name: l.name,
+    description: l.description || '',
+    image: '/globe.svg',
+    rating: Number(l.average_rating || 0),
+  }));
 
   // 9. Return the page content
   return (

@@ -20,6 +20,24 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Backend API Configuration
+
+The frontend calls the backend API using the `NEXT_PUBLIC_API_BASE_URL` environment variable. Create a `.env.local` file in the `frontend/` directory if you want to override the default:
+
+```
+NEXT_PUBLIC_API_BASE_URL=http://localhost:5000/api
+```
+
+If not provided, the app defaults to `http://localhost:5000/api`.
+
+## Available Routes
+
+- `/` – Home with hero, featured categories and locations
+- `/categories` – Categories listing (from backend)
+- `/categories/[id]` – Category detail with locations filtered by category
+- `/locations` – Locations listing (from backend)
+- `/locations/[id]` – Location detail page
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

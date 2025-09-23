@@ -1,9 +1,10 @@
 // 1. Import React (optional in Next.js 13+), categories data, and CategoriesGrid component
-import categories from '@/data/categories.json';
 import CategoriesGrid from '@/components/ui/CategoriesGrid';
+import { api } from '@/lib/api';
 
 // 2. Create the page component
-export default function CategoriesPage() {
+export default async function CategoriesPage() {
+  const categories = await api.listCategories();
   return (
     <main className="container mx-auto px-4 py-8">
       {/* 3. Heading */}

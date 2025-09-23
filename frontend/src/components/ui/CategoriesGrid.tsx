@@ -1,13 +1,7 @@
 // src/components/sections/CategoriesGrid.tsx
 
 import CategoryCard from './CategoryCard';
-
-interface Category {
-  id: number;
-  name: string;
-  description: string;
-  image: string;
-}
+import type { Category } from '@/lib/api';
 
 interface CategoriesGridProps {
   categories: Category[];

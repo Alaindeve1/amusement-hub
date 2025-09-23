@@ -1,27 +1,25 @@
 import Link from 'next/link';
-
-interface Category {
-  id: number;
-  name: string;
-  description: string;
-  image: string;
-}
+import type { Category } from '@/lib/api';
 
 interface CategoryCardProps {
   category: Category;
 }
 
 export default function CategoryCard({ category }: CategoryCardProps) {
+  const img = category.image_url || '/globe.svg';
+
   return (
     <Link href={`/categories/${category.id}`}>
-      <div className="border rounded-lg shadow hover:shadow-lg transition p-4 cursor-pointer bg-white">
+      <div className="group border rounded-lg shadow-sm hover:shadow-lg transition-all p-4 cursor-pointer bg-white/80 backdrop-blur-sm hover:-translate-y-0.5">
         <img
-          src={category.image}
+          src={img}
           alt={category.name}
           className="w-full h-40 object-cover rounded mb-4"
         />
-        <h2 className="text-xl font-semibold mb-2">{category.name}</h2>
-        <p className="text-gray-600">{category.description}</p>
+        <h2 className="text-lg font-semibold mb-1 tracking-tight group-hover:text-pink-600 transition-colors">{category.name}</h2>
+        {category.description && (
+          <p className="text-gray-600 text-sm line-clamp-2">{category.description}</p>
+        )}
       </div>
     </Link>
   );
