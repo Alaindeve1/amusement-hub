@@ -1,6 +1,10 @@
 import { api } from '@/lib/api';
 import { notFound } from 'next/navigation';
 import Breadcrumbs from '@/components/common/breadcrumbs';
+import LocationGallery from '@/components/sections/location-gallery';
+import ReviewsList from '@/components/sections/reviews-list';
+import OpeningHours from '@/components/sections/opening-hours';
+import SpecialEvents from '@/components/sections/special-events';
 
 interface PageProps {
   params: { id: string };
@@ -19,6 +23,20 @@ export default async function LocationDetailsPage({ params }: PageProps) {
     notFound();
   }
 
+  // Fetch related resources
+  const [allImages, allReviews, allHours, allEvents] = await Promise.all([
+    api.listLocationImages(),
+    api.listReviews(),
+    api.listOpeningHours(),
+    api.listSpecialEvents(),
+  ]);
+  const images = allImages.filter(img => Number(img.location_id) === id);
+  const reviews = allReviews
+    .filter(r => Number(r.location_id) === id)
+    .filter(r => r.is_approved == null ? true : !!r.is_approved);
+  const hours = allHours.filter(h => Number(h.location_id) === id);
+  const events = allEvents.filter(e => Number(e.location_id) === id);
+
   const rating = Number(location.average_rating || 0).toFixed(1);
 
   return (
@@ -32,7 +50,7 @@ export default async function LocationDetailsPage({ params }: PageProps) {
         <div className="lg:col-span-2">
           <div className="relative w-full h-64 md:h-80 rounded-lg overflow-hidden shadow">
             {/* Placeholder image; can be replaced by first LocationImage when available */}
-            <img src="/globe.svg" alt={location.name} className="w-full h-full object-cover" />
+            <img src={images.find(i => i.is_primary)?.image_url || images[0]?.image_url || '/globe.svg'} alt={location.name} className="w-full h-full object-cover" />
           </div>
           <section className="mt-6 space-y-4">
             <h1 className="text-3xl font-extrabold tracking-tight">{location.name}</h1>
@@ -70,6 +88,18 @@ export default async function LocationDetailsPage({ params }: PageProps) {
               </div>
             </div>
           </section>
+
+          {/* Gallery */}
+          <LocationGallery images={images} />
+
+          {/* Reviews */}
+          <ReviewsList reviews={reviews} />
+
+          {/* Opening Hours */}
+          <OpeningHours hours={hours} />
+
+          {/* Special Events */}
+          <SpecialEvents events={events} />
         </div>
 
         <aside className="lg:col-span-1 space-y-4">
