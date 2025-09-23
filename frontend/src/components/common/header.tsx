@@ -3,10 +3,12 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { useAuth } from "@/context/AuthContext";
 
 export default function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const { user, logout } = useAuth();
 
   const isActive = (href: string) => (pathname === href ? "text-pink-600" : "text-gray-700");
 
@@ -36,20 +38,35 @@ export default function Header() {
           <span className="block w-5 h-0.5 bg-gray-700" />
         </button>
 
-        {/* Auth Buttons */}
-        <div className="flex gap-4">
-          <Link
-            href="/login"
-            className="px-4 py-2 rounded-lg font-semibold text-blue-600 border border-blue-200 bg-white hover:bg-blue-50 transition"
-          >
-            Login
-          </Link>
-          <Link
-            href="/register"
-            className="px-4 py-2 rounded-lg font-semibold text-white bg-gradient-to-r from-pink-500 to-yellow-400 hover:scale-105 transition"
-          >
-            Register
-          </Link>
+        {/* Auth Buttons or User Menu */}
+        <div className="flex items-center gap-4">
+          {!user ? (
+            <>
+              <Link
+                href="/login"
+                className="px-4 py-2 rounded-lg font-semibold text-blue-600 border border-blue-200 bg-white hover:bg-blue-50 transition"
+              >
+                Login
+              </Link>
+              <Link
+                href="/register"
+                className="px-4 py-2 rounded-lg font-semibold text-white bg-gradient-to-r from-pink-500 to-yellow-400 hover:scale-105 transition"
+              >
+                Register
+              </Link>
+            </>
+          ) : (
+            <div className="relative group">
+              <div className="flex items-center gap-2 cursor-pointer select-none">
+                <div className="w-8 h-8 rounded-full bg-gradient-to-r from-pink-500 to-yellow-400" />
+                <div className="text-sm font-medium">{user.username || user.email}</div>
+              </div>
+              <div className="absolute right-0 mt-2 hidden group-hover:block bg-white border rounded-lg shadow-md min-w-40 py-2">
+                <Link href="/profile" className="block px-4 py-2 hover:bg-gray-50">Profile</Link>
+                <button onClick={logout} className="block w-full text-left px-4 py-2 hover:bg-gray-50">Logout</button>
+              </div>
+            </div>
+          )}
         </div>
       </nav>
 
