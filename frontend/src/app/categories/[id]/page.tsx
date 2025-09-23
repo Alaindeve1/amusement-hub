@@ -1,5 +1,7 @@
 // 1. Import categories data (we'll use this to find the specific category)
 import { api } from '@/lib/api';
+import { notFound } from 'next/navigation';
+import Breadcrumbs from '@/components/common/breadcrumbs';
 
 // 2. Import a component we'll create to display locations in this category
 import LocationsGrid from '@/components/ui/LocationGrid';
@@ -23,14 +25,9 @@ export default async function CategoryDetailsPage({ params }: PageProps) {
     category = null;
   }
 
-  // 7. If category doesn't exist, show error message
+  // 7. If category doesn't exist, use app-level not-found
   if (!category) {
-    return (
-      <main className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold mb-6">Category Not Found</h1>
-        <p>Sorry, this category doesn't exist.</p>
-      </main>
-    );
+    notFound();
   }
 
   // 8. Fetch locations from backend and filter by category

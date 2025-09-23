@@ -1,4 +1,6 @@
 import { api } from '@/lib/api';
+import { notFound } from 'next/navigation';
+import Breadcrumbs from '@/components/common/breadcrumbs';
 
 interface PageProps {
   params: { id: string };
@@ -14,20 +16,18 @@ export default async function LocationDetailsPage({ params }: PageProps) {
   }
 
   if (!location) {
-    return (
-      <main className="container mx-auto px-4 py-12">
-        <div className="text-center">
-          <h1 className="text-3xl font-bold mb-2">Location Not Found</h1>
-          <p className="text-gray-600">Sorry, we couldn't find this location.</p>
-        </div>
-      </main>
-    );
+    notFound();
   }
 
   const rating = Number(location.average_rating || 0).toFixed(1);
 
   return (
     <main className="container mx-auto px-4 py-8">
+      <Breadcrumbs items={[
+        { label: 'Home', href: '/' },
+        { label: 'Locations', href: '/locations' },
+        { label: location.name },
+      ]} />
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2">
           <div className="relative w-full h-64 md:h-80 rounded-lg overflow-hidden shadow">
