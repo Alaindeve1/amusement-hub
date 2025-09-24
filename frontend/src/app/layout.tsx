@@ -22,9 +22,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body className={inter.variable}>
         <AuthProvider>
           <Header />
-          <div className="max-w-7xl mx-auto px-4 md:px-6">
-            {children}
-          </div>
+          {children}
           <Footer />
         </AuthProvider>
       </body>

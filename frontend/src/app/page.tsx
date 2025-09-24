@@ -1,6 +1,6 @@
 // app/page.tsx
 
-import Hero from "@/components/sections/hero";
+import Welcome from "@/components/landing/Welcome";
 import CategoriesGrid from "@/components/ui/CategoriesGrid";
 import LocationsGrid from "@/components/ui/LocationGrid";
 import { api } from "@/lib/api";
@@ -26,7 +26,7 @@ export default async function HomePage() {
 
   return (
     <main>
-      <Hero />
+      <Welcome />
 
       <section className="max-w-7xl mx-auto px-4 md:px-6 py-12">
         <h2 className="text-2xl font-bold mb-4">Explore by Category</h2>
