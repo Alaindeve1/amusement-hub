@@ -14,6 +14,8 @@ export default function ExploreList() {
 	return <div style={{ color: 'crimson' }}>Failed to load data.</div>;
 	}
 
+	const rwandaLocations = (locations ?? []).filter((l) => (l.country || '').toLowerCase() === 'rwanda');
+
 	return (
 		<div style={{ display: 'grid', gridTemplateColumns: '260px 1fr', gap: 16 }}>
 			<aside style={{ border: '1px solid #e5e7eb', borderRadius: 12, padding: 16 }}>
@@ -25,7 +27,7 @@ export default function ExploreList() {
 				</ul>
 			</aside>
 			<section style={{ display: 'grid', gap: 16, gridTemplateColumns: 'repeat(3, minmax(0, 1fr))' }}>
-				{locations?.map((l) => (
+				{rwandaLocations.map((l) => (
 					<LocationCard key={l.id} location={l} />
 				))}
 			</section>
