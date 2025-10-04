@@ -13,7 +13,14 @@
     "build": "npm run build --workspaces",
     "build:frontend": "npm run build --workspace=frontend",
     "build:backend": "npm run build --workspace=backend",
-    "install:all": "npm install && npm install --workspace=frontend && npm install --workspace=backend"
+    "install:all": "npm install && npm install --workspace=frontend && npm install --workspace=backend",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
+    "format": "prettier --write .",
+    "test": "npm run test --workspaces --if-present",
+    "test:frontend": "npm test --workspace=frontend",
+    "test:backend": "npm test --workspace=backend",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
