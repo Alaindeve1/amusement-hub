@@ -30,8 +30,8 @@ const featured: Place[] = [
     city: 'Kigali',
     category: 'Landmark',
     image_url: 'https://images.unsplash.com/photo-1589802829985-817e51171b34?q=80&w=1400&auto=format&fit=crop',
-    rating: 4.7,
-    reviews: 98,
+    rating: 5,
+    reviews: 1,
     price: '$10',
   },
   {
